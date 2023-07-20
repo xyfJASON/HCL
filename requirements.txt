@@ -1,0 +1,6 @@
+yacs
+timm
+lpips
+tensorboard
+torchmetrics
+torch-fidelity

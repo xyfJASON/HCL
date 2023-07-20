@@ -1,0 +1,94 @@
+seed: 3407
+
+
+data:
+  name: Places365
+  dataroot: /data/xuyifeng/data/Places365/
+  img_size: 512
+
+
+mask:
+  mask_type: dir
+  dir_path: /data/xuyifeng/data/NVIDIAIrregularMaskDataset/train/
+  dir_invert_color: true
+  noise_type: real
+  real_dataset:
+    - name: ImageNet
+      dataroot: /data/xuyifeng/data/ImageNet/
+      img_size: 512
+  smooth_radius: 3
+
+
+dataloader:
+  num_workers: 4
+  pin_memory: true
+  prefetch_factor: 2
+  batch_size: 3
+  micro_batch: 0
+
+
+inpaintnet:
+  dim: 64
+  n_conv_stages: 1
+  dim_mults: [1, 2, 4]
+  proj_dim: 64
+  fuse: true
+  encoder_depths: [6, 4, 2]
+  decoder_depths: [2, 2, 2]
+  window_size: 8
+  bottleneck_window_size: 8
+  bottleneck_depth: 2
+  conf_threshs: [1.0, 0.95, 0.95]
+  temperature: 0.1
+  kmeans_n_iters: 3
+  kmeans_repeat: 1
+
+refinenet:
+  dim: 64
+  dim_mults: [1, 2, 4, 8, 8]
+
+
+contrast:
+  start_stage: 0
+  temperature: 0.1
+  sample_num: 512
+  valid_thresh: 1.0
+  invalid_thresh: 0.0
+  hard_mining: true
+  hard_num: 512
+
+
+train:
+  exp_dir: ~
+
+  n_steps: 50000
+  print_freq: 100
+  evaluate_freq: 1000
+  sample_freq: 500
+  save_freq: 5000
+
+  pretrained: ~
+  resume: ~
+
+  lambda_contrast: 0.1
+  lambda_rec: 1.0
+  lambda_rec_refined: 1.0
+  lambda_perc: 0.01
+  lambda_perc_refined: 0.01
+  lambda_adv_refined: 1.0
+  perc_use_features: [relu2_2, relu3_2]
+  perc_use_features_refined: [relu4_2, relu5_2]
+
+  lr_inpaintnet: 0.0001
+  lr_refinenet: 0.0001
+  lr_pdisc: 0.0001
+
+
+test:
+  pretrained: ~
+  # evaluate
+  n_eval: 3000
+  # sample
+  n_samples: 20
+  random: False
+  save_dir: ./samples/places512/
