@@ -2,6 +2,10 @@
 
 Codebase of ICCV 2023 paper "Hierarchical Contrastive Learning for Pattern-Generalizable Image Corruption Detection".
 
+
+
+## Overall Framework
+
 ![](./assets/architecture.png)
 
 
@@ -36,7 +40,7 @@ Codebase of ICCV 2023 paper "Hierarchical Contrastive Learning for Pattern-Gener
 
 
 
-## Datasets preparation
+## Datasets Preparation
 
 We use [CelebA-HQ](https://github.com/tkarras/progressive_growing_of_gans), [FFHQ](https://github.com/NVlabs/ffhq-dataset), [ImageNet](https://image-net.org/) and [Places365](http://places2.csail.mit.edu/) datasets in our experiments.
 
@@ -47,55 +51,11 @@ We use [CelebA-HQ](https://github.com/tkarras/progressive_growing_of_gans), [FFH
 
 We use **NVIDIA Irregular Mask Dataset** in our experiments, which can be downloaded from the [official website](https://nv-adlr.github.io/publication/partialconv-inpainting). To avoid heavy computation in transforming the masks during training, we use this dataset in a way similar to [EdgeConnect](https://github.com/knazeri/edge-connect/issues/28#issuecomment-456440064). To do so, put `./scripts/make_irregular_dataset.py` under the unzipped directory and run the script. It will augment and split the original "testing set" into new training split and test split.
 
-After downloading & processing, the data directory should look like:
-
-```text
-dataroot(anywhere)
-├── CelebA-HQ
-│   ├── CelebA-HQ-img
-│   │   ├── 000004.jpg
-│   │   ├── ...
-│   │   └── 202591.jpg
-│   ├── CelebA-HQ-to-CelebA-mapping.txt
-│   └── celebahq_map_index.py
-├── FFHQ
-│   └── images1024x1024
-│       ├── 00000
-│       ├── ...
-│       └── 69000
-├── ImageNet
-│   ├── train
-│   ├── val
-│   └── test
-├── Places365
-│   ├── data_large_standard
-│   │   ├── a
-│   │   ├── ...
-│   │   └── z
-│   ├── val_large
-│   │   ├── Places365_val_00000001.jpg
-│   │   ├── ...
-│   │   └── Places365_val_00036500.jpg
-│   └── test_large
-│       ├── Places365_test_00000001.jpg
-│       ├── ...
-│       └── Places365_test_00328500.jpg
-└── NVIDIAIrregularMaskDataset
-    ├── train
-    │   ├── 0
-    │   ├── ...
-    │   └── 5
-    └── test
-        ├── 0
-        ├── ...
-        └── 5
-```
-
-Then, change the `dataroot` in [configuration files](./configs) to your downloaded path.
+After downloading and processing the datasets, set the `dataroot` in the [configuration files](./configs) to your downloaded path.
 
 
 
-## Pretrained weights
+## Pretrained Weights
 
 The pretrained models and config files are provided as follows:
 
@@ -104,28 +64,6 @@ The pretrained models and config files are provided as follows:
 |   FFHQ   |                    |             |
 | ImageNet |                    |             |
 |  Places  |                    |             |
-
-
-
-## Evaluation
-
-```shell
-torchrun --nproc_per_node 4 test.py evaluate -c /path/to/config/file.yml \
-    --test.pretrained /path/to/checkpoint/of/trained/model.pt \
-    --mask.dir_path /path/to/irregular/mask/dataset/test/split
-```
-
-
-
-## Sampling
-
-```shell
-python test.py sample -c /path/to/config/file.yml \
-    --test.pretrained /path/to/checkpoint/of/trained/model.pt \
-    --test.n_samples {number of samples} \
-    --test.save_dir /directory/to/save/the/results/ \
-    --mask.dir_path /path/to/irregular/mask/dataset/test/split
-```
 
 
 
@@ -147,8 +85,6 @@ torchrun --nproc_per_node 4 train.py -c ./configs/xxxxx.yml -p 2 \
     --train.n_steps 100000
 ```
 
-We can finetune the pretrained model on downstream tasks such as watermark removal and shadow removal.
-
 **Downstream tasks finetuning** (e.g., watermark removal on LOGO-30K dataset):
 
 ```shell
@@ -157,5 +93,43 @@ torchrun --nproc_per_node 2 train.py -c ./configs/xxxxx.yml -p 2 \
     --data.name LOGO-30K \
     --data.dataroot /path/to/dataroot/ \
     --train.pretrained /path/to/pretrained/checkpoint.pt
+```
+
+
+
+## Testing
+
+**Evaluate**:
+
+```shell
+torchrun --nproc_per_node 4 test.py evaluate -c /path/to/config/file.yml \
+    --test.pretrained /path/to/checkpoint/of/trained/model.pt \
+    --mask.dir_path /path/to/irregular/mask/dataset/test/split
+```
+
+**Sample**:
+
+```shell
+python test.py sample -c /path/to/config/file.yml \
+    --test.pretrained /path/to/checkpoint/of/trained/model.pt \
+    --test.n_samples {number of samples} \
+    --test.save_dir /directory/to/save/the/results/ \
+    --mask.dir_path /path/to/irregular/mask/dataset/test/split
+```
+
+
+
+## Citation
+
+If you find this work useful for your research, please cite:
+
+```
+@InProceedings{hierarchical_2023, 
+  author = {Xin Feng, Yifeng Xu, Guangming Lu, Wenjie Pei},
+  title = {Hierarchical Contrastive Learning for Pattern-Generalizable Image Corruption Detection}, 
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}, 
+  month = {October}, 
+  year = {2023}
+}
 ```
 
