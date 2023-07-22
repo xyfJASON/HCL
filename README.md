@@ -49,7 +49,7 @@ We use [CelebA-HQ](https://github.com/tkarras/progressive_growing_of_gans), [FFH
 - **ImageNet**: Download ImageNet dataset (ILSVRC 2012) from the [official website](https://image-net.org/challenges/LSVRC/2012/2012-downloads.php). No post-processing is needed.
 - **Places365**: Download Places365-Standard from the [official website](http://places2.csail.mit.edu/index.html). No post-processing is needed.
 
-We use **NVIDIA Irregular Mask Dataset** in our experiments, which can be downloaded from the [official website](https://nv-adlr.github.io/publication/partialconv-inpainting). To avoid heavy computation in transforming the masks during training, we use this dataset in a way similar to [EdgeConnect](https://github.com/knazeri/edge-connect/issues/28#issuecomment-456440064). To do so, put `./scripts/make_irregular_dataset.py` under the unzipped directory and run the script. It will augment and split the original "testing set" into new training split and test split.
+We use **NVIDIA Irregular Mask Dataset** in our experiments, which can be downloaded from the [official website](https://nv-adlr.github.io/publication/partialconv-inpainting). To avoid heavy computation in transforming the masks during training, we use this dataset in a way similar to [EdgeConnect](https://github.com/knazeri/edge-connect/issues/28#issuecomment-456440064). To do so, put `./scripts/make_irregular_dataset.py` under the unzipped dataset and run the script. It will augment and split the original "testing set" into a new training split and a test split.
 
 After downloading and processing the datasets, set the `dataroot` in the [configuration files](./configs) to your downloaded path.
 
@@ -57,13 +57,11 @@ After downloading and processing the datasets, set the `dataroot` in the [config
 
 ## Pretrained Weights
 
-The pretrained models and config files are provided as follows:
+The pretrained model weights and configuration files are provided in the following links:
 
-| dataset  | pretrained weights | config file |
-| :------: | :----------------: | :---------: |
-|   FFHQ   |                    |             |
-| ImageNet |                    |             |
-|  Places  |                    |             |
+- FFHQ (256x256): [pretrained weight](https://stuhiteducn-my.sharepoint.com/:u:/g/personal/190110230_stu_hit_edu_cn/Eb55KPMDfwRIla_iK_9-y_MBM-t5xH4RrJHe9UCeDyMpHA) | [config file](https://stuhiteducn-my.sharepoint.com/:u:/g/personal/190110230_stu_hit_edu_cn/Ed15HGAszK9Lm7RFEtC_PeoBBjMuiHNUKUybvrZY1VGqcg?e=tJ02RO)
+- ImageNet (256x256): [pretrained weight](https://stuhiteducn-my.sharepoint.com/:u:/g/personal/190110230_stu_hit_edu_cn/ERd22zuVdZdGiKq-EYTtWeEBS19byTFxfKvgiFheEWw9oQ?e=RjvMNf) | [config file](https://stuhiteducn-my.sharepoint.com/:u:/g/personal/190110230_stu_hit_edu_cn/EVM-PwYef3dCq9tbVsSHh4oBLDPrNhW1CKI1Te87ayPlnQ?e=4bnZKA)
+- Places (256x256): [pretrained weight](https://stuhiteducn-my.sharepoint.com/:u:/g/personal/190110230_stu_hit_edu_cn/ER0TNQwv69ZAl7IBmlk0gywBnT8Z2gdP2Am18P7Bwls-zQ?e=ns7G2p) | [config file](https://stuhiteducn-my.sharepoint.com/:u:/g/personal/190110230_stu_hit_edu_cn/ETiD2GBQKqdKrYV7RgNkJQMBV_3kglKPYarZ0GA4Bg33fg?e=syzNbV)
 
 
 
