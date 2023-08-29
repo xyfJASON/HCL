@@ -1,6 +1,6 @@
 # Hierarchical-Contrastive-Learning-Corruption-Detection
 
-Codebase of ICCV 2023 paper "Hierarchical Contrastive Learning for Pattern-Generalizable Image Corruption Detection".
+Codebase of ICCV 2023 paper "[Hierarchical Contrastive Learning for Pattern-Generalizable Image Corruption Detection](https://arxiv.org/abs/2308.14061)".
 
 
 
