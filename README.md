@@ -122,12 +122,13 @@ python test.py sample -c /path/to/config/file.yml \
 If you find this work useful for your research, please cite:
 
 ```
-@InProceedings{hierarchical_2023, 
-  author = {Xin Feng, Yifeng Xu, Guangming Lu, Wenjie Pei},
-  title = {Hierarchical Contrastive Learning for Pattern-Generalizable Image Corruption Detection}, 
-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}, 
-  month = {October}, 
-  year = {2023}
+@InProceedings{Feng_2023_ICCV,
+    author    = {Feng, Xin and Xu, Yifeng and Lu, Guangming and Pei, Wenjie},
+    title     = {Hierarchical Contrastive Learning for Pattern-Generalizable Image Corruption Detection},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {12076-12085}
 }
 ```
 
