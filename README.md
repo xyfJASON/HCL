@@ -15,8 +15,8 @@ Codebase of ICCV 2023 paper "[Hierarchical Contrastive Learning for Pattern-Gene
 1. Clone this repo:
 
    ```shell
-   git clone https://github.com/xyfJASON/Hierarchical-Contrastive-Learning-Corruption-Detection.git
-   cd Hierarchical-Contrastive-Learning-Corruption-Detection
+   git clone https://github.com/xyfJASON/HCL.git
+   cd HCL
    ```
 
 2. Create and activate a conda environment:
